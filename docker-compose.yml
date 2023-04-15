@@ -1,0 +1,44 @@
+version: "3.8"
+
+# volumes:
+#   keycloak-db:
+
+services:
+  keycloak-db:
+    image: postgres:14.0-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-keycloak}
+      POSTGRES_USER: ${POSTGRES_USER:-keycloak}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-keycloak}
+      PGDATA: /data/postgres
+    # volumes:
+    #   - keycloak-db:/data/postgres
+    ports:
+      - ${POSTGRES_PORT:-5432}:5432
+    networks:
+      - vue-kk-template-network
+
+  # https://www.keycloak.org/server/containers#_provide_initial_admin_credentials_when_running_in_a_container
+  keykcloak:
+    image: quay.io/keycloak/keycloak
+    depends_on:
+      - keycloak-db
+    ports:
+      - "8081:8080"
+    environment:
+      - KEYCLOAK_USER=admin
+      - KC_DB_URL=jdbc:postgresql://keycloak-db:5432/keycloak
+      - KC_DB_USERNAME=keycloak
+      - KC_DB_PASSWORD=keycloak
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    command: >
+      start-dev --db=postgres --import-realm
+    volumes:
+      - ./realm/realm-export.json:/opt/keycloak/data/import/realm-export.json
+    networks:
+      - vue-kk-template-network
+
+networks:
+  vue-kk-template-network:
+    name: vue-kk-template-network
