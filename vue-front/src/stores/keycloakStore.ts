@@ -5,7 +5,6 @@ import type Keycloak from "keycloak-js";
 // https://pinia.vuejs.org/getting-started.html
 export const useKeycloakStore = defineStore('keycloakStore', () => {
   const keycloak = ref(null as Keycloak | null)
-  const token = ref(keycloak.value?.token)
 
-  return { keycloak, token }
+  return { keycloak }
 })

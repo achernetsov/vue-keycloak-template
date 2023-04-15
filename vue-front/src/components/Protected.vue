@@ -25,12 +25,10 @@ function fetchProtectedData() {
 
 onMounted(() => {
     console.log("Mounted")
-    setInterval(() => {
-        fetchProtectedData()
-    }, 1000)
+    fetchProtectedData()
 })
 </script>
 
 <template>
-    <h3>Data: {{ profile }}</h3>
+    <h3>Data: {{ protectedData }}</h3>
 </template>
