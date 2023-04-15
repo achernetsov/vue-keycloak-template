@@ -15,7 +15,7 @@ Components:
 docker-compose up -d
 ```
 
-Keycloak will import realm with settings, but without users. Go to http://localhost:8081, login as admin / admin, and create user alice with password alice.
+Keycloak will import realm with clients and roles, but without users. Go to http://localhost:8081, login as admin / admin, and create user alice with password alice.
 
 2. Start back
 
@@ -102,9 +102,9 @@ Run: ```npm run dev```
 
 See [keycloak-js lib](https://www.keycloak.org/securing-apps/vue)
 
-Keycloak-js installed: ```npm i keycloak-js --save```
+Keycloak-js is installed: ```npm i keycloak-js --save```
 
-Pinia keycloak store created to allow components access keycloak for token (/stores/keycloakStore.ts):
+Pinia keycloak store is created to allow components access keycloak for a token (/stores/keycloakStore.ts):
 
 ```typescript
 import { ref } from 'vue'
@@ -121,7 +121,7 @@ export const useKeycloakStore = defineStore('keycloakStore', () => {
 
 ```
 
-Keycloak is initialized and saved into store. Vue app is mounted when user successfully authenticated, and token refresh timer started.
+Keycloak is initialized and saved into the store. Vue app is mounted when user successfully authenticated. Token is refreshed periodically using setInterval().
 
 main.ts:
 
@@ -171,7 +171,7 @@ keycloak.init(initOptions).then(auth => {
 }).catch(() => console.error("Authentication failed"))
 ```
 
-components/Protected.vue calls API with access token from keycloak:
+components/Protected.vue calls API with access token:
 
 ```typescript
 function fetchProfile() {
