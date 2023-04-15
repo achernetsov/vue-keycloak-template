@@ -1,11 +1,11 @@
 <script setup lang="ts">
 
-import { onMounted, ref } from 'vue';
 import { useKeycloakStore } from '@/stores/keycloakStore';
+import { onMounted, ref } from 'vue';
 
-const profile = ref("")
+const protectedData = ref("")
 
-function fetchProfile() {
+function fetchProtectedData() {
 
     const keycloak = useKeycloakStore().keycloak
     var myHeaders = new Headers();
@@ -17,7 +17,7 @@ function fetchProfile() {
     fetch('/api/protected', requestOptions)
         .then(response => response.text())
         .then(text => {
-            profile.value = text
+            protectedData.value = text
         }
         )
         .catch(err => console.error(err))
@@ -25,9 +25,9 @@ function fetchProfile() {
 
 onMounted(() => {
     console.log("Mounted")
-    setInterval(()=>{
-        fetchProfile()
-    },1000)
+    setInterval(() => {
+        fetchProtectedData()
+    }, 1000)
 })
 </script>
 

@@ -174,7 +174,7 @@ keycloak.init(initOptions).then(auth => {
 components/Protected.vue calls API with access token:
 
 ```typescript
-function fetchProfile() {
+function fetchProtectedData() {
 
     const keycloak = useKeycloakStore().keycloak
     var myHeaders = new Headers();
@@ -186,7 +186,7 @@ function fetchProfile() {
     fetch('/api/protected', requestOptions)
         .then(response => response.text())
         .then(text => {
-            profile.value = text
+            protectedData.value = text
         }
         )
         .catch(err => console.error(err))
