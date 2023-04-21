@@ -1,6 +1,6 @@
 # Overview
 
-vue app + keycloak to access protected API
+vue app + keycloak template.
 
 Components:
 * Vue app (vue3, typescript, composition API, Pinia, Router) + [keycloak-js lib](https://www.keycloak.org/securing-apps/vue)
