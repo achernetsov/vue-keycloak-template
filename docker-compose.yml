@@ -1,7 +1,7 @@
 version: "3.8"
 
-# volumes:
-#   keycloak-db:
+volumes:
+  keycloak-db:
 
 services:
   keycloak-db:
@@ -11,8 +11,8 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-keycloak}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-keycloak}
       PGDATA: /data/postgres
-    # volumes:
-    #   - keycloak-db:/data/postgres
+    volumes:
+      - keycloak-db:/data/postgres
     ports:
       - ${POSTGRES_PORT:-5432}:5432
     networks:
