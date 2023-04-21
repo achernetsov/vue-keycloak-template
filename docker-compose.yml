@@ -19,7 +19,7 @@ services:
       - vue-kk-template-network
 
   # https://www.keycloak.org/server/containers#_provide_initial_admin_credentials_when_running_in_a_container
-  keykcloak:
+  keycloak:
     image: quay.io/keycloak/keycloak
     depends_on:
       - keycloak-db
