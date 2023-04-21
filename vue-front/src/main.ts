@@ -15,7 +15,7 @@ app.use(createPinia())
 app.use(router)
 
 let keycloakConfig: KeycloakConfig = {
-    url: 'http://localhost:8081', realm: 'vue-template', clientId: 'front'
+    url: import.meta.env.VITE_KEYCLOAK_URL, realm: 'vue-template', clientId: 'front'
 }
 
 let keycloak = new Keycloak(keycloakConfig)
@@ -24,7 +24,7 @@ keycloakStore.keycloak = keycloak
 
 let initOptions: KeycloakInitOptions = {
     onLoad: 'login-required',
-    redirectUri: 'http://localhost:5173',
+    redirectUri: import.meta.env.VITE_KEYCLOAK_REDIRECT_URL,
     enableLogging: true
 }
 

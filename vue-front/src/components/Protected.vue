@@ -18,6 +18,7 @@ function fetchProtectedData() {
         .then(response => response.text())
         .then(text => {
             protectedData.value = text
+            console.info("Protected data loaded successfully")
         }
         )
         .catch(err => console.error(err))

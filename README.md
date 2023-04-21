@@ -1,10 +1,10 @@
 # Overview
 
-Template for vue application accessing protected API using keycloak for security.
+vue app + keycloak to access protected API
 
 Components:
 * Vue app (vue3, typescript, composition API, Pinia, Router) + [keycloak-js lib](https://www.keycloak.org/securing-apps/vue)
-* Backend service with protected API (quarkus)
+* Backend service with protected API (quarkus, [oidc](https://quarkus.io/guides/security-openid-connect))
 * Keycloak
 
 # Quickstart
@@ -15,7 +15,14 @@ Components:
 docker-compose up -d
 ```
 
-Keycloak will import realm with clients and roles, but without users. Go to http://localhost:8081, login as admin / admin, and create user alice with password alice.
+Keycloak will import realm with clients and roles, but without users. Also client's secrets will be dropped.
+
+
+Go to http://localhost:8083/admin/master/console/#/vue-template, login as admin / admin
+
+Create user alice with password alice.
+
+Regenerate back secret, put it in back/src/main/resources/application.properties (quarkus.oidc.credentials.secret)
 
 2. Start back
 
